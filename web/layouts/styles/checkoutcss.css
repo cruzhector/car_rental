@@ -155,3 +155,6 @@ select{
   background: #ddd;
   color: black;
 }
+.required{
+    color: red;
+}
