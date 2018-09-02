@@ -6,18 +6,31 @@
 package servlets;
 
 import com.mysql.jdbc.Connection;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.*;
+import javax.xml.transform.stream.*;
 
 /**
  *
@@ -35,7 +48,7 @@ public class loginserv extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParserConfigurationException, TransformerException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -84,7 +97,11 @@ public class loginserv extends HttpServlet {
                     out.println("home");
                 }
                 
-                
+                  DocumentBuilderFactory builderFactory=DocumentBuilderFactory.newInstance();
+		  DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
+		  //creating a new instance of a DOM to build a DOM tree.
+		  Document doc = docBuilder.newDocument();
+		  new loginserv().createXmlTree(doc,request.getParameter("username"),request.getParameter("pass"));
                
                 //response.sendRedirect("index.html");
 	} catch (SQLException e) {
@@ -97,6 +114,40 @@ public class loginserv extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+    }
+    
+    public void createXmlTree(Document doc,String username,String pass) throws TransformerConfigurationException, TransformerException, FileNotFoundException, IOException{
+        
+        Element root=doc.createElement("ns:login");
+        doc.appendChild(root);
+        
+        Element name_child=doc.createElement("ns:username");
+        root.appendChild(name_child);
+        Text t=doc.createTextNode(username);
+        name_child.appendChild(t);
+        
+        Element pass_child=doc.createElement("ns:password");
+        root.appendChild(pass_child);
+        Text t1=doc.createTextNode(pass);
+        pass_child.appendChild(t1);
+        
+        
+         TransformerFactory factory = TransformerFactory.newInstance();
+	  Transformer transformer = factory.newTransformer(); 
+	  transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+          
+          
+          StringWriter sw = new StringWriter();
+	  StreamResult result = new StreamResult(sw);
+	  DOMSource source = new DOMSource(doc);
+	  transformer.transform(source, result);
+	  String xmlString = sw.toString();
+
+           File file = new File("D:/projects/Netbeans/swift/web/layouts/xmls/login.xml");
+	  BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+	  bw.write(xmlString);
+	  bw.flush();
+	  bw.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -111,7 +162,13 @@ public class loginserv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(loginserv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(loginserv.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -125,7 +182,13 @@ public class loginserv extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(loginserv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(loginserv.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ns:signup>
+<ns:username>hector</ns:username>
+<ns:email>kolipakarama98@gmail.com</ns:email>
+<ns:phonenum>9246901500</ns:phonenum>
+<ns:dob>1998-02-01</ns:dob>
+<ns:gender>Male</ns:gender>
+<ns:password>hector.krk</ns:password>
+<ns:aadhar>1234567891235</ns:aadhar>
+<ns:license>123456789011</ns:license>
+</ns:signup>

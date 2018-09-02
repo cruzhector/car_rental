@@ -7,8 +7,14 @@ package servlets;
 
 import com.mysql.jdbc.Connection;
 import getsets.homegetset;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +31,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
 
 /**
  *
@@ -42,7 +61,7 @@ public class homeserv extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+            throws ServletException, IOException, ParseException, ParserConfigurationException, TransformerException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -88,6 +107,7 @@ public class homeserv extends HttpServlet {
                       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                       Date date1 = sdf.parse(request.getParameter("ddate"));
                       Date date2 = sdf.parse(request.getParameter("pdate"));
+                      
                       int diffInDays = (int) ((date1.getTime() - date2.getTime())/ DAY_IN_MILLIS );
                       int cost=rs.getInt("cost")+(rs.getInt("cost")*(diffInDays/2));
                      ar.add(new carsgetset(rs.getString("carname"),rs.getString("cartype"),rs.getString("transmission"),rs.getString("seats"),cost,rs.getString("image")));
@@ -101,6 +121,14 @@ public class homeserv extends HttpServlet {
             session.setAttribute("carlistsize", String.valueOf(ar.size()));
 
             response.sendRedirect("carsdisplay.jsp");
+            
+             DocumentBuilderFactory builderFactory=DocumentBuilderFactory.newInstance();
+		  DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
+		  //creating a new instance of a DOM to build a DOM tree.
+		  Document doc = docBuilder.newDocument();
+		  new homeserv().createXmlTree(doc,request.getParameter("pickup"),request.getParameter("pdate"),request.getParameter("ddate"));
+                
+            
 
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -128,6 +156,10 @@ public class homeserv extends HttpServlet {
             processRequest(request, response);
         } catch (ParseException ex) {
             Logger.getLogger(homeserv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(homeserv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(homeserv.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -146,6 +178,10 @@ public class homeserv extends HttpServlet {
             processRequest(request, response);
         } catch (ParseException ex) {
             Logger.getLogger(homeserv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(homeserv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(homeserv.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -158,5 +194,45 @@ public class homeserv extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void createXmlTree(Document doc, String parameter, String parameter0, String parameter1) throws TransformerConfigurationException, TransformerException, FileNotFoundException, IOException{  
+    
+     Element root=doc.createElement("ns:home");
+        doc.appendChild(root);
+        
+        Element pickup_child=doc.createElement("ns:pickup");
+        root.appendChild(pickup_child);
+        Text t=doc.createTextNode(parameter);
+        pickup_child.appendChild(t);
+        
+        Element pdate_child=doc.createElement("ns:pdate");
+        root.appendChild(pdate_child);
+        Text t1=doc.createTextNode(parameter0);
+        pdate_child.appendChild(t1);
+        
+         Element ddate_child=doc.createElement("ns:ddate");
+        root.appendChild(ddate_child);
+        Text t2=doc.createTextNode(parameter1);
+        ddate_child.appendChild(t2);
+        
+        
+          TransformerFactory factory = TransformerFactory.newInstance();
+	  Transformer transformer = factory.newTransformer(); 
+	  transformer.setOutputProperty(OutputKeys.INDENT, "yes");    
+        
+        
+          StringWriter sw = new StringWriter();
+	  StreamResult result = new StreamResult(sw);
+	  DOMSource source = new DOMSource(doc);
+	  transformer.transform(source, result);
+	  String xmlString = sw.toString();
+
+           File file = new File("D:/projects/Netbeans/swift/web/layouts/xmls/home.xml");
+	  BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+	  bw.write(xmlString);
+	  bw.flush();
+	  bw.close();
+        
+    }
 
 }
