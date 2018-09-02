@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT ns:login (ns:username,ns:password)>
+<!ELEMENT ns:username (#PCDATA)>
+<!ELEMENT ns:password (#PCDATA)>
+

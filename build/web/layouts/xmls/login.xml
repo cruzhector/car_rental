@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE ns:login SYSTEM "login.dtd">
 <ns:login>
 <ns:username>kolipakarama@gmail.com</ns:username>
 <ns:password>hector1998</ns:password>

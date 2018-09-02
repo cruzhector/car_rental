@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE ns:signup SYSTEM "signup.dtd">
+
 <ns:signup>
 <ns:username>hector</ns:username>
 <ns:email>kolipakarama98@gmail.com</ns:email>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--
+    TODO define vocabulary identification data
+    PUBLIC ID  : -//vendor//vocabulary//EN
+    SYSTEM ID  : http://server/path/__NAME__
+-->
+
+<!-- TODO define your own vocabulary/syntax. Example follows:  -->
+<!ELEMENT ns:signup (ns:username,ns:email,ns:phonenum,ns:dob,ns:gender,ns:password,ns:aadhar,ns:license)>
+<!ELEMENT ns:username (#PCDATA)>
+<!ELEMENT ns:email (#PCDATA)>
+<!ELEMENT ns:phonenum (#PCDATA)>
+<!ELEMENT ns:dob (#PCDATA)>
+<!ELEMENT ns:gender (#PCDATA)>
+<!ELEMENT ns:password (#PCDATA)>
+<!ELEMENT ns:aadhar (#PCDATA)>
+<!ELEMENT ns:license (#PCDATA)>

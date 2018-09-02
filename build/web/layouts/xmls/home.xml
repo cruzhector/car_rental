@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE ns:home SYSTEM "home.dtd">
 <ns:home>
 <ns:pickup>Coimbatore</ns:pickup>
 <ns:pdate>2018-09-12</ns:pdate>
