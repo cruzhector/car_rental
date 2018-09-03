@@ -79,7 +79,7 @@ try {
       </li>
       <li>
           <label>Email </label>
-          <input type="email" name="email" class="formswidth" value="<%=(String)session.getAttribute("email")%>"/>
+          <input type="email" name="email" class="formswidth" value="<%=(String)session.getAttribute("email")%>" disabled="true"/>
           <span class="required" id="emailreq"></span>
       </li>
       <li>
