@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<ns:profile>
-<ns:username>varun</ns:username>
-<ns:email>kolipakarama98@gmail.com</ns:email>
-<ns:phonenum>9246901500</ns:phonenum>
-<ns:dob>1998-02-01</ns:dob>
-<ns:gender>Male</ns:gender>
-<ns:license>1234567891235</ns:license>
-<ns:aadhar>123456789011</ns:aadhar>
-</ns:profile>
+<profile>
+<username>ramakrishna</username>
+<email>kolipakarama@gmail.com</email>
+<phonenum>9490904680</phonenum>
+<dob>2018-08-15</dob>
+<gender>Male</gender>
+<license>1234567891234</license>
+<aadhar>548550008000</aadhar>
+</profile>

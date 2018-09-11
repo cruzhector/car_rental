@@ -118,15 +118,15 @@ public class loginserv extends HttpServlet {
     
     public void createXmlTree(Document doc,String username,String pass) throws TransformerConfigurationException, TransformerException, FileNotFoundException, IOException{
         
-        Element root=doc.createElement("ns:login");
+        Element root=doc.createElement("login");
         doc.appendChild(root);
         
-        Element name_child=doc.createElement("ns:username");
+        Element name_child=doc.createElement("username");
         root.appendChild(name_child);
         Text t=doc.createTextNode(username);
         name_child.appendChild(t);
         
-        Element pass_child=doc.createElement("ns:password");
+        Element pass_child=doc.createElement("password");
         root.appendChild(pass_child);
         Text t1=doc.createTextNode(pass);
         pass_child.appendChild(t1);

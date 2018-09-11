@@ -197,20 +197,20 @@ public class homeserv extends HttpServlet {
 
     private void createXmlTree(Document doc, String parameter, String parameter0, String parameter1) throws TransformerConfigurationException, TransformerException, FileNotFoundException, IOException{  
     
-     Element root=doc.createElement("ns:home");
+     Element root=doc.createElement("home");
         doc.appendChild(root);
         
-        Element pickup_child=doc.createElement("ns:pickup");
+        Element pickup_child=doc.createElement("pickup");
         root.appendChild(pickup_child);
         Text t=doc.createTextNode(parameter);
         pickup_child.appendChild(t);
         
-        Element pdate_child=doc.createElement("ns:pdate");
+        Element pdate_child=doc.createElement("pdate");
         root.appendChild(pdate_child);
         Text t1=doc.createTextNode(parameter0);
         pdate_child.appendChild(t1);
         
-         Element ddate_child=doc.createElement("ns:ddate");
+         Element ddate_child=doc.createElement("ddate");
         root.appendChild(ddate_child);
         Text t2=doc.createTextNode(parameter1);
         ddate_child.appendChild(t2);

@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/projects/Netbeans/swift/web/layouts/xmls/login.dtd</file>
-            <file>file:/D:/projects/Netbeans/swift/web/layouts/xmls/signup.xml</file>
-            <file>file:/D:/projects/Netbeans/swift/web/layouts/xmls/signup.dtd</file>
-            <file>file:/D:/projects/Netbeans/swift/web/layouts/xmls/home.dtd</file>
-            <file>file:/D:/projects/Netbeans/swift/web/layouts/xmls/home.xml</file>
-            <file>file:/D:/projects/Netbeans/swift/web/layouts/xmls/login.xml</file>
+            <file>file:/D:/projects/Netbeans/swift/src/java/servlets/signupserv.java</file>
         </group>
     </open-files>
 </project-private>

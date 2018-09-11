@@ -16,11 +16,13 @@
     </head>
     <body>
       <div class="navbar">
+          
   <a href="profile.jsp">Profile</a>
-  <a href="">Contact</a>
+  <a href="">Booked</a>
   <a href="">Home</a>
 </div>
         <div class="cont" >
+            <p>SWIFT</p>
 <div class="card">
     <form  action="homeserv" method="post" onsubmit="return val()">
   <ul class="formstyle">

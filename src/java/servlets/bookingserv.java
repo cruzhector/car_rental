@@ -69,12 +69,20 @@ public class bookingserv extends HttpServlet {
             out.println("success");
             HttpSession session=request.getSession();
             PreparedStatement ps=connec.prepareStatement("INSERT INTO booking(email,carname,city,fromdate,todate) VALUES(?,?,?,?,?)");
+            out.println("pa");
+            out.println((String) session.getAttribute("email"));
+                      out.println(request.getParameter("carname"));
+
             ps.setString(1, (String) session.getAttribute("email"));
             ps.setString(2, request.getParameter("carname"));
             ps.setString(3,(String)session.getAttribute("city"));
             ps.setString(4,(String)session.getAttribute("from"));
             ps.setString(5,(String)session.getAttribute("to"));
+                                  out.println((String)session.getAttribute("to"));
+                                                                     out.println((String)session.getAttribute("city"));
+
             ps.executeUpdate();
+            out.println("varun");
             response.sendRedirect("home.jsp");
               DocumentBuilderFactory builderFactory=DocumentBuilderFactory.newInstance();
 		  DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
@@ -154,31 +162,31 @@ public class bookingserv extends HttpServlet {
     }// </editor-fold>
 
     public void createXmlTree(Document doc, String string, String parameter, String string0, String string1, String string2)throws TransformerConfigurationException, TransformerException, FileNotFoundException, IOException{  
-     Element root=doc.createElement("ns:booking");
+     Element root=doc.createElement("booking");
         doc.appendChild(root);
         
-        Element email_child=doc.createElement("ns:email");
+        Element email_child=doc.createElement("email");
         root.appendChild(email_child);
         Text t=doc.createTextNode(string);
         email_child.appendChild(t);
         
-        Element car_child=doc.createElement("ns:carname");
+        Element car_child=doc.createElement("carname");
         root.appendChild(car_child);
         Text t1=doc.createTextNode(parameter);
         car_child.appendChild(t1);
         
-         Element city_child=doc.createElement("ns:city");
+         Element city_child=doc.createElement("city");
         root.appendChild(city_child);
         Text t2=doc.createTextNode(string0);
         city_child.appendChild(t2);
         
           
-        Element from_child=doc.createElement("ns:from");
+        Element from_child=doc.createElement("from");
         root.appendChild(from_child);
         Text t3=doc.createTextNode(string1);
         from_child.appendChild(t3);
         
-         Element to_child=doc.createElement("ns:to");
+         Element to_child=doc.createElement("to");
         root.appendChild(to_child);
         Text t4=doc.createTextNode(string2);
         to_child.appendChild(t4);

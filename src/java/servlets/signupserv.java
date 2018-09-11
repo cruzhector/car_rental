@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -78,6 +79,17 @@ public class signupserv extends HttpServlet {
 	try {
 		con=(Connection)DriverManager.getConnection(url, user, password);
                 out.println("connected");
+                
+               ps=con.prepareStatement("SELECT  * FROM users WHERE email = '"+request.getParameter("email")+"'");
+                ResultSet r=ps.executeQuery();
+                if(r.first()){
+                   
+                        String mess="Email already exists";
+                        request.setAttribute("mess", mess);
+                        request.getRequestDispatcher("/signup.jsp").forward(request, response);  
+                }
+                else{
+
                 ps=con.prepareStatement("INSERT INTO users(name,email,phonenum,dob,gender,pass,license,aadhar) VALUES(?,?,?,?,?,?,?,?)");
                 ps.setString(1,request.getParameter("name") );
                 ps.setString(2,request.getParameter("email") );
@@ -97,6 +109,7 @@ public class signupserv extends HttpServlet {
 		  new signupserv().createXmlTree(doc,request.getParameter("name"),request.getParameter("email"),request.getParameter("phnnum"),request.getParameter("dob"),request.getParameter("gender"),request.getParameter("pass"),request.getParameter("license"),request.getParameter("aadhar"));
                 
                 response.sendRedirect("login.jsp");
+                }
                 //response.sendRedirect("index.html");
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -110,6 +123,7 @@ public class signupserv extends HttpServlet {
                 con.close();
             }
         }
+        
             out.println("</body>");
             out.println("</html>");
         }
@@ -155,45 +169,45 @@ public class signupserv extends HttpServlet {
 
     public void createXmlTree(Document doc, String parameter, String parameter0, String parameter1, String parameter2, String parameter3, String parameter4, String parameter5, String parameter6) throws TransformerConfigurationException, TransformerException, FileNotFoundException, IOException{
         
-        Element root=doc.createElement("ns:signup");
+        Element root=doc.createElement("signup");
         doc.appendChild(root);
         
-        Element name_child=doc.createElement("ns:username");
+        Element name_child=doc.createElement("username");
         root.appendChild(name_child);
         Text t=doc.createTextNode(parameter);
         name_child.appendChild(t);
         
-        Element email_child=doc.createElement("ns:email");
+        Element email_child=doc.createElement("email");
         root.appendChild(email_child);
         Text t1=doc.createTextNode(parameter0);
         email_child.appendChild(t1);
         
-         Element phn_child=doc.createElement("ns:phonenum");
+         Element phn_child=doc.createElement("phonenum");
         root.appendChild(phn_child);
         Text t2=doc.createTextNode(parameter1);
         phn_child.appendChild(t2);
         
-        Element dob_child=doc.createElement("ns:dob");
+        Element dob_child=doc.createElement("dob");
         root.appendChild(dob_child);
         Text t3=doc.createTextNode(parameter2);
         dob_child.appendChild(t3);
         
-        Element gen_child=doc.createElement("ns:gender");
+        Element gen_child=doc.createElement("gender");
         root.appendChild(gen_child);
         Text t4=doc.createTextNode(parameter3);
         gen_child.appendChild(t4);
         
-        Element pass_child=doc.createElement("ns:password");
+        Element pass_child=doc.createElement("password");
         root.appendChild(pass_child);
         Text t5=doc.createTextNode(parameter4);
         pass_child.appendChild(t5);
         
-         Element lic_child=doc.createElement("ns:license");
+         Element lic_child=doc.createElement("license");
         root.appendChild(lic_child);
         Text t6=doc.createTextNode(parameter5);
         lic_child.appendChild(t6);
         
-        Element aadhar_child=doc.createElement("ns:aadhar");
+        Element aadhar_child=doc.createElement("aadhar");
         root.appendChild(aadhar_child);
         Text t7=doc.createTextNode(parameter6);
         aadhar_child.appendChild(t7);

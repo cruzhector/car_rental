@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<ns:home>
-<ns:pickup>Coimbatore</ns:pickup>
-<ns:pdate>2018-09-05</ns:pdate>
-<ns:ddate>2018-09-07</ns:ddate>
-</ns:home>
+<home>
+<pickup>Coimbatore</pickup>
+<pdate>2018-09-08</pdate>
+<ddate>2018-09-10</ddate>
+</home>

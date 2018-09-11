@@ -15,7 +15,6 @@
     </head>
     <body>
 
-
   <div class="topnav">
     <div class="topnav-left">
       <a href="#home">SWIFT</a>
@@ -40,8 +39,8 @@
       </li>
       <li>
           <label>Email </label>
-          <input type="email" id="email" name="email" class="formswidth"/>
-          <span class="required" id="emailreq"></span>
+          <input type="email" id="email" name="email"  class="formswidth"/>
+          <span class="required" id="emailreq">${mess}</span>
       </li>
       <li>
         <label>Phone Number</label>
