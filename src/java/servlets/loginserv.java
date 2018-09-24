@@ -78,21 +78,29 @@ public class loginserv extends HttpServlet {
 	String password="hector1998";
 	Connection con=null;
         PreparedStatement ps=null;
-	try {
+                        HttpSession session=request.getSession();
+
+                        String em = null;
                 
+          
+                   
+                   
+                   
+                       try {
+            
 		con=(Connection)DriverManager.getConnection(url, user, password);
                 out.println("connected");
                 ps=con.prepareStatement("SELECT * FROM users WHERE email=? AND pass=?");
                 ps.setString(1,request.getParameter("username") );
                 ps.setString(2,request.getParameter("pass") );
                 ResultSet rs=ps.executeQuery();
-                HttpSession session=request.getSession();
                 
                 if(rs.next()){
                     session.setAttribute("email", request.getParameter("username"));
                     Cookie emailcook=new Cookie("email",request.getParameter("username"));
-                    Cookie passcook=new Cookie("pass",request.getParameter("pass"));
-
+                    emailcook.setMaxAge(60*60*24);
+                 
+                    response.addCookie(emailcook);
                     response.sendRedirect("home.jsp");
                     out.println("home");
                 }
@@ -108,12 +116,14 @@ public class loginserv extends HttpServlet {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+        
       
         
             
             out.println("</body>");
             out.println("</html>");
         }
+        
     }
     
     public void createXmlTree(Document doc,String username,String pass) throws TransformerConfigurationException, TransformerException, FileNotFoundException, IOException{

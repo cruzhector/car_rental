@@ -73,6 +73,7 @@ $(document).ready(function(){
       
         <li>
             <br>
+            
           <input type="submit" value="Confirm Booking" />
       </li>
   </ul>

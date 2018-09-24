@@ -100,9 +100,9 @@ public class homeserv extends HttpServlet {
 		con=(Connection)DriverManager.getConnection(url, user, password);
                 out.println("connected");
                 ps=con.prepareStatement("SELECT * FROM carstable WHERE carname NOT IN(SELECT carname FROM booking WHERE(fromdate <= '"+request.getParameter("ddate")+"') AND (todate >= '"+request.getParameter("pdate")+"'))");
-              
+                              out.println("came");
+
                 ResultSet rs=ps.executeQuery();
-                
                  while(rs.next()){
                       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                       Date date1 = sdf.parse(request.getParameter("ddate"));

@@ -9,7 +9,7 @@ package servlets;
  *
  * @author kolip
  */
-public class carsgetset {
+public class carsgetset{
  public String carname;
  public String cartype;
  public String transmission;
