@@ -25,6 +25,14 @@
         <servlet-name>bookingserv</servlet-name>
         <servlet-class>servlets.bookingserv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logoutserv</servlet-name>
+        <servlet-class>servlets.logoutserv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>bookedserv</servlet-name>
+        <servlet-class>servlets.bookedserv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signupserv</servlet-name>
         <url-pattern>/signupserv</url-pattern>
@@ -45,9 +53,13 @@
         <servlet-name>bookingserv</servlet-name>
         <url-pattern>/bookingserv</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
+    <servlet-mapping>
+        <servlet-name>logoutserv</servlet-name>
+        <url-pattern>/logoutserv</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bookedserv</servlet-name>
+        <url-pattern>/bookedserv</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

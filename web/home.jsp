@@ -6,6 +6,18 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+    <%
+              String em=null;
+                 Cookie cookiearr[]=request.getCookies();
+                 HttpSession sess=request.getSession();
+                 
+                 for(Cookie cok:cookiearr){
+                    if(cok.getName().equals("email")){
+                       em=cok.getValue().trim();
+                        sess.setAttribute("email", em);
+                    }
+                }
+          %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,14 +28,19 @@
     </head>
     <body>
       <div class="navbar">
-          
+        <div class="navbar">
+              <a href="logoutserv">Logout</a>
+
   <a href="profile.jsp">Profile</a>
-  <a href="">Booked</a>
-  <a href="">Home</a>
+  <a href="bookedserv">Booked</a>
+  <a href="home.jsp">Home</a>
 </div>
-        <div class="cont" >
-            <p>SWIFT</p>
+      </div>
+
+        <div class="container" >
 <div class="card">
+    <b><p><%="Welcome Back"+" "+em%></p></b>
+
     <form  action="homeserv" method="post" onsubmit="return val()">
   <ul class="formstyle">
       <li>
@@ -75,7 +92,10 @@ $(document).ready(function(){
             <br>
             
           <input type="submit" value="Confirm Booking" />
-      </li>
+          
+      
+          
+        </li>
   </ul>
       </form>
 </div>

@@ -16,9 +16,11 @@ import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -64,7 +66,15 @@ public class bookingserv extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet bookingserv at " + request.getContextPath() + "</h1>");
-            
+              String email=null;
+                 Cookie cookiearr[]=request.getCookies();
+                 if(cookiearr!=null)   {
+                 for(Cookie cok:cookiearr){
+                    if(cok.getName().equals("email")){
+                        email=cok.getValue();
+                    }
+                }
+                 }
             Connection connec=connection.con();
             out.println("success");
             HttpSession session=request.getSession();
@@ -73,7 +83,9 @@ public class bookingserv extends HttpServlet {
             out.println((String) session.getAttribute("email"));
                       out.println(request.getParameter("carname"));
 
-            ps.setString(1, (String) session.getAttribute("email"));
+           
+                      
+            ps.setString(1, email);
             ps.setString(2, request.getParameter("carname"));
             ps.setString(3,(String)session.getAttribute("city"));
             ps.setString(4,(String)session.getAttribute("from"));

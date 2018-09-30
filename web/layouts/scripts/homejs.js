@@ -20,11 +20,11 @@ function val(){
         document.getElementById("preq").innerHTML=" *check the dates";
         return false;
     }
-    if(pdate=''){
+    if(pdate==''){
      document.getElementById("preq").innerHTML=" Required Pickup Date";
         return false;   
     }
-     if(pdate=''){
+     if(ddate==''){
      document.getElementById("dreq").innerHTML=" Required drop Date";
         return false;   
     }

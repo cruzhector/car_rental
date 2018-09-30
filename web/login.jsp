@@ -8,6 +8,18 @@
 
 
 <!DOCTYPE html>
+<%
+                             Cookie cookiearr[]=request.getCookies();
+                             if(cookiearr!=null){
+ for(Cookie cok:cookiearr){
+                    if(cok.getName().equals("email")){
+                        response.sendRedirect("home.jsp");
+                    }
+                }
+                             }
+                               
+%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,6 +29,8 @@
     </head>
     <body class="center">
  
+          <span class="required">${mess}</span>
+        
         <form action="loginserv" method="post" name="forms" onsubmit="sendInfo()">
   <ul class="formstyle">
       <li>

@@ -17,13 +17,17 @@
         <%
         String x= request.getParameter("cost");
         StringBuilder sb=new StringBuilder();
-        sb.append("Pay").append(x);
+        sb.append("Pay").append(" ").append(x);
         String tot=sb.toString();
         %>
         <div class="navbar">
+        <div class="navbar">
+              <a href="logoutserv">Logout</a>
+
   <a href="profile.jsp">Profile</a>
-  <a href="">Contact</a>
-  <a href="">Home</a>
+  <a href="bookedserv">Contact</a>
+  <a href="home.jsp">Home</a>
+</div>
 </div>
         
         <div class="main">
@@ -42,7 +46,8 @@
                     <ul class="formstyle">
        
                         <input type="hidden" name="carname" value=<%=request.getParameter("carname")%>  />
-      
+                        <input type="hidden" name="carcost" value=<%=request.getParameter("cost")%>  />
+
       <li>
         <label>Card Number</label>
         <input type="text" id="num" name="num"  class="formswidth" />

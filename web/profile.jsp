@@ -11,6 +11,8 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,25 +24,44 @@
     </head>
 <body>
 <%
- 
-            String email=(String)session.getAttribute("email");
+            
+            HttpSession session1=request.getSession();
+            String email=null;
+        String driverName = "com.mysql.jdbc.Driver";    
         String url="jdbc:mysql://localhost/carrental";
 	String user="root";
 	String password="hector1998";
 	Connection con=null;
-        PreparedStatement ps=null;
+        Statement ps=null;
         ArrayList<usersgetset> arr=new ArrayList<>();
 
+        try {
+Class.forName(driverName);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+        
 try {
                 
+    
+    Cookie []c=request.getCookies();
+            if(c!=null){
+            for(Cookie cook:c){
+                if(cook.getName().equals("email")){
+                    email=cook.getValue().trim();
+                }
+            }
+            }
 		con=(Connection)DriverManager.getConnection(url, user, password);
-                ps=con.prepareStatement("SELECT * FROM users WHERE email=?");
-                ps.setString(1,email);
-                
-                ResultSet rs=ps.executeQuery();
+              
+                ps=con.createStatement();
+                String sql = "SELECT * FROM users WHERE email='"+email+"'";
+
+                ResultSet rs=ps.executeQuery(sql);
                 while(rs.next()){
                     arr.add(new usersgetset(rs.getString("name"),rs.getString("phonenum"),rs.getString("dob"),rs.getString("gender"),rs.getString("license"),rs.getString("aadhar")));
                 }
+                
                
                 //response.sendRedirect("index.html");
 	} catch (SQLException e) {
@@ -50,10 +71,12 @@ try {
 %>
 
 
-    <div class="navbar">
+        <div class="navbar">
+              <a href="logoutserv">Logout</a>
+
   <a href="profile.jsp">Profile</a>
-  <a href="">Contact</a>
-  <a href="">Home</a>
+  <a href="bookedserv">Booked</a>
+  <a href="home.jsp">Home</a>
 </div>
 <div class="main">
 <div class="card">
@@ -61,7 +84,7 @@ try {
   <div class="container">
     <h4><%=arr.get(0).getName()%></h4>
     <p><%=arr.get(0).getPhnum()%></p>
-    <p><%=(String)session.getAttribute("email")%></p>
+    <p><%=email%></p>
 
   </div>
 </center>
@@ -70,9 +93,7 @@ try {
   <form action="profupdserv" method="post">
   <ul class="formstyle">
        
-             
-      
-      <li>
+    <li>
         <label>Full Name</label>
         <input type="text" id="name" name="name"  class="formswidth" value="<%=arr.get(0).getName()%>"/>
         <span class="required" id="namereq"></span>

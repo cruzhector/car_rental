@@ -19,9 +19,11 @@
     <body>
 
         <div class="navbar">
+              <a href="logoutserv">Logout</a>
+
   <a href="profile.jsp">Profile</a>
-  <a href="">Contact</a>
-  <a href="">Home</a>
+  <a href="bookedserv">Booked</a>
+  <a href="home.jsp">Home</a>
 </div>
 <div class="left-side">
     

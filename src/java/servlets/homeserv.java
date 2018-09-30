@@ -92,6 +92,8 @@ public class homeserv extends HttpServlet {
 	Connection con=null;
         PreparedStatement ps=null;
 	try {
+            
+            
             HttpSession session=request.getSession();
             ArrayList<carsgetset> ar=new ArrayList<>();
            final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
@@ -111,7 +113,6 @@ public class homeserv extends HttpServlet {
                       int diffInDays = (int) ((date1.getTime() - date2.getTime())/ DAY_IN_MILLIS );
                       int cost=rs.getInt("cost")+(rs.getInt("cost")*(diffInDays/2));
                      ar.add(new carsgetset(rs.getString("carname"),rs.getString("cartype"),rs.getString("transmission"),rs.getString("seats"),cost,rs.getString("image")));
-                     
                  }
                  
             session.setAttribute("city", request.getParameter("pickup"));

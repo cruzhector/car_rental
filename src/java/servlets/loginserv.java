@@ -79,7 +79,6 @@ public class loginserv extends HttpServlet {
 	Connection con=null;
         PreparedStatement ps=null;
                         HttpSession session=request.getSession();
-
                         String em = null;
                 
           
@@ -90,6 +89,7 @@ public class loginserv extends HttpServlet {
             
 		con=(Connection)DriverManager.getConnection(url, user, password);
                 out.println("connected");
+                
                 ps=con.prepareStatement("SELECT * FROM users WHERE email=? AND pass=?");
                 ps.setString(1,request.getParameter("username") );
                 ps.setString(2,request.getParameter("pass") );
@@ -99,7 +99,7 @@ public class loginserv extends HttpServlet {
                     session.setAttribute("email", request.getParameter("username"));
                     Cookie emailcook=new Cookie("email",request.getParameter("username"));
                     emailcook.setMaxAge(60*60*24);
-                 
+                    emailcook.setHttpOnly(true);
                     response.addCookie(emailcook);
                     response.sendRedirect("home.jsp");
                     out.println("home");
