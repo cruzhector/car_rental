@@ -3,20 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/projects/Netbeans/swift/web/layouts/styles/signupcss.css</file>
+            <file>file:/D:/projects/Netbeans/swift/web/layouts/scripts/signupjs.js</file>
             <file>file:/D:/projects/Netbeans/swift/web/booked.jsp</file>
             <file>file:/D:/projects/Netbeans/swift/src/java/servlets/bookedserv.java</file>
             <file>file:/D:/projects/Netbeans/swift/web/layouts/styles/carsdisplaycss.css</file>
+            <file>file:/D:/projects/Netbeans/swift/web/forgotpass.jsp</file>
+            <file>file:/D:/projects/Netbeans/swift/src/java/servlets/forgotpassserv.java</file>
             <file>file:/D:/projects/Netbeans/swift/web/layouts/styles/homecss.css</file>
-            <file>file:/D:/projects/Netbeans/swift/web/layouts/styles/profilecss.css</file>
             <file>file:/D:/projects/Netbeans/swift/src/java/servlets/profupdserv.java</file>
             <file>file:/D:/projects/Netbeans/swift/web/profile.jsp</file>
             <file>file:/D:/projects/Netbeans/swift/web/checkout.jsp</file>
+            <file>file:/D:/projects/Netbeans/swift/web/layouts/scripts/loginajax.js</file>
             <file>file:/D:/projects/Netbeans/swift/web/carsdisplay.jsp</file>
             <file>file:/D:/projects/Netbeans/swift/src/java/servlets/carsgetset.java</file>
             <file>file:/D:/projects/Netbeans/swift/web/login.jsp</file>
             <file>file:/D:/projects/Netbeans/swift/src/java/servlets/signupserv.java</file>
             <file>file:/D:/projects/Netbeans/swift/src/java/servlets/loginserv.java</file>
+            <file>file:/D:/projects/Netbeans/swift/src/java/servlets/Counter.java</file>
             <file>file:/D:/projects/Netbeans/swift/web/layouts/styles/bookedcss.css</file>
             <file>file:/D:/projects/Netbeans/swift/web/signup.jsp</file>
             <file>file:/D:/projects/Netbeans/swift/web/layouts/styles/checkoutcss.css</file>
@@ -28,6 +31,7 @@
             <file>file:/D:/projects/Netbeans/swift/web/home.jsp</file>
             <file>file:/D:/projects/Netbeans/swift/src/java/servlets/homeserv.java</file>
             <file>file:/D:/projects/Netbeans/swift/src/java/servlets/bookedgetset.java</file>
+            <file>file:/D:/projects/Netbeans/swift/web/layouts/scripts/forgotpassjs.js</file>
             <file>file:/D:/projects/Netbeans/swift/src/java/servlets/connection.java</file>
         </group>
     </open-files>
