@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet-mapping>
+        <servlet-name>forgotpassserv</servlet-name>
+        <url-pattern>/forgotpassserv</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>
             login.jsp   
@@ -33,6 +37,10 @@
         <servlet-name>bookedserv</servlet-name>
         <servlet-class>servlets.bookedserv</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>forgotpassserv</servlet-name>
+        <servlet-class>servlets.forgotpassserv</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>signupserv</servlet-name>
         <url-pattern>/signupserv</url-pattern>
@@ -61,5 +69,4 @@
         <servlet-name>bookedserv</servlet-name>
         <url-pattern>/bookedserv</url-pattern>
     </servlet-mapping>
-    
 </web-app>

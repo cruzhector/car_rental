@@ -47,6 +47,8 @@
            <input type="submit" value="Log In" />
       </li>
       <span><p> Not a User ?<a href="signup.jsp"> Register</a></p></span>
+      <span style=""><p> Forgot Password ?<a href="forgotpass.jsp"> Reset here</a></p></span>
+
   </ul>
          </form>
     
