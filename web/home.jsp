@@ -38,6 +38,8 @@
       </div>
 
         <div class="container" >
+            
+            <p class="reqtext">${book}</p>
 <div class="card">
     <b><p><%="Welcome Back"+" "+em%></p></b>
 

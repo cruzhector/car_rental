@@ -95,7 +95,10 @@ public class bookingserv extends HttpServlet {
 
             ps.executeUpdate();
             out.println("varun");
-            response.sendRedirect("home.jsp");
+            String book="Email already exists";
+            request.setAttribute("book", book);
+            request.getRequestDispatcher("/home.jsp").forward(request, response);
+            
               DocumentBuilderFactory builderFactory=DocumentBuilderFactory.newInstance();
 		  DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
 		  //creating a new instance of a DOM to build a DOM tree.

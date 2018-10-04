@@ -18,7 +18,7 @@
     <body class="center">
  
         
-          <form action="forgotpassserv" method="post" name="forms" onsubmit="check()">
+          <form action="forgotpassserv" method="post" name="forms" onsubmit="return check()">
   <ul class="formstyle">
       <li>
         <label>Mobile Or Email Id</label>
